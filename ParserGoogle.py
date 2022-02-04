@@ -5,13 +5,15 @@ import csv
 
 class ParseLink:
 
-    def __init__(self, query):   
-        self.url   = "https://google.com/search?q=" + self.ConverQuery(query)
+    def CreateQuery(self, query: str, type_doc: str, site: str):
+        self.file_type = "+filetype:" + type_doc
+        self.inver = "+-" + site
+        self.url   = "https://google.com/search?q=" + self.ConverQuery(query) + self.file_type + self.inver
 
     def ConverQuery(self, no_conv_query):
         return no_conv_query.replace(" ", "+")
 
-    def CreateResponse(self):
+    def CreateResponse(self, name_file):
         self.USER_AGENT = "User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko)"
         self.headers = {
             "user_agent": self.USER_AGENT
@@ -24,9 +26,10 @@ class ParseLink:
             self.response = requests.request("GET", self.url_try, headers=self.headers)
             if self.response.status_code == 200:
                 print("[*] OK! ")
+                
                 self.soup = BeautifulSoup(self.response.content, "html.parser")
 
-            with open('ParserGoogle.csv', 'a') as f:
+            with open(name_file, 'a') as f:
                 self.writer = csv.writer(f)
                 self.ListLinks = []
                 for link in self.soup.find_all('a'):
