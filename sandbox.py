@@ -1,7 +1,16 @@
-from doctest import DocTestFailure
-import urllib.parse as pars
+from time import sleep
 
-string = "https://accounts.google.com/ServiceLogin?continue=https://www.google.com/search%3Fq%3Dpython%2Bfor%2Bbeginners%26lr%3Dlang_en%26hl%3Den%26cr%3DUS&hl=en"
-fix_string = pars.unquote(string)
 
-print(fix_string)
+print("Hello!")
+print ("\033[A\033[A")
+
+print('DUDU')
+
+for i in range(101):
+    print(str(i)+"%")
+    sleep(1)
+    print ("\033[A\033[A")
+
+class waiting:
+    def __init__(self) -> None:
+        pass

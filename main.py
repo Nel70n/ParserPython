@@ -1,12 +1,15 @@
 from ParserGoogle import ParseLink
 
 flag = True
+
 print("*---------------------------------*")
 print("|   Pre testing parsing program   |")
 print("|                    ver. 0.0.1   |")
 print("| author:                         |")
-print("|         Trofimov Nikita         |")
+print("|           Trofimov Nikita       |")
 print("*---------------------------------*")
+
+
 while flag:
     try: 
         print('--> ', end="")
@@ -14,10 +17,25 @@ while flag:
         if console_input == 'find file':
             print("[*] Edit query:", end=" ")
             query = input()
-            session = ParseLink(
-                query=query
+
+            print("[*] File for search:", end=" ")
+            type_doc = input()
+
+            print("[*] Remove site:", end=" ")
+            site = input()
+
+            print("[*] Enter file for save:", end=" ")
+            name_file = input() + ".csv"
+
+            session = ParseLink()
+            session.CreateQuery(
+                query=query,
+                type_doc=type_doc,
+                site=site
             )
-            session.CreateResponse()
+            session.CreateResponse(
+                name_file = name_file
+            )
         elif console_input == 'exit':
             flag = False
         elif console_input == 'Help':
