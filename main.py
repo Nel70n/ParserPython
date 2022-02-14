@@ -1,48 +1,45 @@
 from ParserGoogle import ParseLink
 
-flag = True
+
+FlagSession = True
 
 print("*---------------------------------*")
 print("|   Pre testing parsing program   |")
-print("|                    ver. 0.0.1   |")
+print("|                    ver. 0.1.1   |")
 print("| author:                         |")
 print("|           Trofimov Nikita       |")
 print("*---------------------------------*")
 
 
-while flag:
+while FlagSession:
     try: 
         print('--> ', end="")
         console_input = input()
-        if console_input == 'find file':
-            print("[*] Edit query:", end=" ")
-            query = input()
-
-            print("[*] File for search:", end=" ")
-            type_doc = input()
-
-            print("[*] Remove site:", end=" ")
-            site = input()
-
-            print("[*] Enter file for save:", end=" ")
-            name_file = input() + ".csv"
+        print(console_input)
+        if console_input == "fi": 
+            print("Enter parameters for parse:\n    (query, name file, number of page)")
+            parameters = list(input().split(", "))
+            # parameters = ['Elon Musk', 'Elon Musk', 3]
+            print(f"Query: {parameters[0]}\nFile: {parameters[1] + '.csv'}\nCount Page: {parameters[2]}")
 
             session = ParseLink()
-            session.CreateQuery(
-                query=query,
-                type_doc=type_doc,
-                site=site
+            session.Parse_query(
+                query = parameters[0], 
+                name_file = parameters[1] + ".csv", 
+                count_pages = int(parameters[2])
             )
-            session.CreateResponse(
-                name_file = name_file
-            )
+
         elif console_input == 'exit':
-            flag = False
+            FlagSession = False
+
         elif console_input == 'Help':
             print("*-----------------------------------*")
             print("| find file – find files from query |")
             print("| exit – exit from program          |")
             print("*-----------------------------------*")
+
+        elif console_input == "^C":
+            FlagSession = False
 
     except KeyboardInterrupt:
         break
