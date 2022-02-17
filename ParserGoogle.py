@@ -71,11 +71,13 @@ class ParseLink:
                                 self.links_list.append(self.href_tag)
 
                         # Исключаем неверные ссылки и повторения
-                        self.unique_links = set(self.links_list[2:-9])  
-
+                        self.unique_links = set(self.links_list[2:-10])  
+                        # print(self.unique_links)
                         # Сохраняем их в файл
                         for self.link in self.unique_links:
-                            self.writer.writerow(list(self.site, self.link))
+                            self.row = self.site.split(" ")
+                            self.row.append(self.link)
+                            self.writer.writerow(self.row)
 
                         # Ищем кнопку перехода на следующую страницу
                         self.button_next_page = self.driver.find_element(
