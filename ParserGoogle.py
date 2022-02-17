@@ -33,7 +33,7 @@ class ParseLink:
          которые будут парсится для каждого сайта из списка SITES_FOR_PARSING. 
          Вводить параметры нужно через ", "
         '''
-        self.driver = webdriver.Chrome(executable_path="chromedriver.exe")
+        self.driver = webdriver.Chrome(executable_path="drivers/chromedriver.exe")
         with open("data//" + name_file, "w") as f:
             # Перебор по сайтам из списка
             for self.site in self.SITES_FOR_PARSING:
@@ -75,7 +75,7 @@ class ParseLink:
 
                         # Сохраняем их в файл
                         for self.link in self.unique_links:
-                            self.writer.writerow(list(self.site ,self.link.split(" ")))
+                            self.writer.writerow(list(self.site, self.link))
 
                         # Ищем кнопку перехода на следующую страницу
                         self.button_next_page = self.driver.find_element(
