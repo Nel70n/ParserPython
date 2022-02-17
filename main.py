@@ -5,7 +5,7 @@ FlagSession = True
 
 print("*---------------------------------*")
 print("|   Pre testing parsing program   |")
-print("|                    ver. 0.1.1   |")
+print("|                    ver. 0.1.2   |")
 print("| author:                         |")
 print("|           Trofimov Nikita       |")
 print("*---------------------------------*")
@@ -19,7 +19,7 @@ while FlagSession:
         if console_input == "fi": 
             print("Enter parameters for parse:\n    (query, name file, number of page)")
             parameters = list(input().split(", "))
-            # parameters = ['Elon Musk', 'Elon Musk', 3]
+            # parameters = ['Elon Musk', 'Elon Musk', 3] # <-- Пример ввода 
             print(f"Query: {parameters[0]}\nFile: {parameters[1] + '.csv'}\nCount Page: {parameters[2]}")
 
             session = ParseLink()
@@ -33,10 +33,10 @@ while FlagSession:
             FlagSession = False
 
         elif console_input == 'Help':
-            print("*-----------------------------------*")
-            print("| find file – find files from query |")
-            print("| exit – exit from program          |")
-            print("*-----------------------------------*")
+            print("*--------------------------------------*")
+            print("| fi – find information from news site |")
+            print("| exit|ex – exit from program          |")
+            print("*--------------------------------------*")
 
         elif console_input == "^C":
             FlagSession = False
