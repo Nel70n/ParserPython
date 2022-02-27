@@ -23,18 +23,10 @@ while FlagSession:
             print(f"Query: {parameters[0]}\nFile: {parameters[1] + '.csv'}\nCount Page: {parameters[2]}")
 
             session = ParseLink()
-            session.ParseQuery(
+            session.Parse_query(
                 query = parameters[0], 
                 name_file = parameters[1] + ".csv", 
                 count_pages = int(parameters[2])
-            )
-
-        elif console_input == "pc":
-            print("Enter name file (with .csv): ", end = "")
-            name_file = input()
-            session = ParseLink()
-            session.ParseNewsSite(
-                name_file = name_file
             )
 
         elif console_input == 'exit':

@@ -23,7 +23,7 @@ class ParseLink:
             "regions.ru"
         ]
 
-    def ParseQuery(self, query : str, name_file : str, count_pages : int):
+    def Parse_query(self, query : str, name_file : str, count_pages : int):
         '''
          Блок парсинга новостных источников на основе открытой поисковой системы Searx
          Дополнительно к этому используются команды Google Dorks, для поиска непосредственно
@@ -98,26 +98,3 @@ class ParseLink:
                         break
             # Закрываем файл
             f.close()
-            self.driver.close()
-
-    def ParseNewsSite(self, name_file : str):
-        with open("data//"+name_file, "r") as F:
-            self.url_file = csv.reader(F)
-            for row in self.url_file:
-                # print(row)
-                if row[0] == "bbc.com":
-                    self.driver = webdriver.Chrome(executable_path="drivers/chromedriver.exe")
-                    self.driver.get(row[1])
-                    self.web_content = self.driver.page_source
-                    self.ParserBBC(self.web_content)
-                break 
-    
-    def ParserBBC(self, content : str):
-        self.ResultContent = {
-            "header": None, 
-            "Body": None,
-            "Footer": None
-        }
-
-
-        return self.ResultContent
