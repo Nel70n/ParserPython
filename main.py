@@ -1,5 +1,5 @@
 from ParserGoogle import ParseLink
-
+from ParserGoogle import ScoringSite
 
 FlagSession = True
 
@@ -12,29 +12,29 @@ print("*---------------------------------*")
 
 
 while FlagSession:
-    try: 
+    try:
         print('--> ', end="")
         console_input = input()
         print(console_input)
-        if console_input == "fi": 
+        if console_input == "fi":
             print("Enter parameters for parse:\n    (query, name file, number of page)")
             parameters = list(input().split(", "))
-            # parameters = ['Elon Musk', 'Elon Musk', 3] # <-- Пример ввода 
+            # parameters = ['Elon Musk', 'Elon Musk', 3] # <-- Пример ввода
             print(f"Query: {parameters[0]}\nFile: {parameters[1] + '.csv'}\nCount Page: {parameters[2]}")
 
             session = ParseLink()
             session.ParseQuery(
-                query = parameters[0], 
-                name_file = parameters[1] + ".csv", 
+                query = parameters[0],
+                name_file = parameters[1] + ".csv",
                 count_pages = int(parameters[2])
             )
 
         elif console_input == "pc":
             print("Enter name file (with .csv): ", end = "")
             name_file = input()
-            session = ParseLink()
-            session.ParseNewsSite(
-                name_file = name_file
+            session = ScoringSite()
+            session.StartWork(
+                patch_file=name_file
             )
 
         elif console_input == 'exit':
@@ -43,6 +43,7 @@ while FlagSession:
         elif console_input == 'Help':
             print("*--------------------------------------*")
             print("| fi – find information from news site |")
+            print("| pc – parsing site from data file     |")
             print("| exit|ex – exit from program          |")
             print("*--------------------------------------*")
 
